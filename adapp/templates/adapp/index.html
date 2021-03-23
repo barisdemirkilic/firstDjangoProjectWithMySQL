@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'adapp/style.css' %}">
+  <title>Ada yazilim assignment index html document</title>
+</head>
+
+<body>
+  <h1 class="titleStyle">Ada yazilim assignment</h1>
+  <div id="addSqlDataFormDiv">
+    <form action="{% url 'adapp:addSqlData' %}" method="post" class="formStyle">
+      {% csrf_token %}
+      <div class="titleStyle">Add test data to database</div> <hr>
+      <div class="formEleDiv">
+        <label for="customerCount">Customer count:</label>
+        <input type="number" min="1" placeholder="Enter customer count..." id="customerCount" name="customerCount" class="rightToLeft">
+      </div>
+      <div class="formEleDiv">
+        <label for="basketCount">Basket count:</label>
+        <input type="number" min="1" placeholder="Enter basket count..." id="basketCount" name="basketCount" class="rightToLeft">
+      </div>
+      <div class="formEleDiv">
+        <input type="submit" value="Add" class="rightToLeft">
+      </div>
+    </form>
+  </div>
+  <div id="analyseByCityFormDiv">
+    <form action="{% url 'adapp:analyseByCity' %}" method="post" class="formStyle">
+      {% csrf_token %}
+      <div class="titleStyle">Analyse by city</div> <hr>
+      <div class="formEleDiv">
+        <input type="submit" value="Analyse" class="rightToLeft">
+      </div>
+    </form>
+  </div>
+  <div>
+    <a href="{% url 'adapp:sqldatabase' %}">Check database</a>
+  </div>
+</body>
+
+</html>

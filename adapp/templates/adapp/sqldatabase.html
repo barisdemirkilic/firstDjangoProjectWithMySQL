@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'adapp/style.css' %}">
+  <title>Ada yazilim assignment sqldatabase html document</title>
+</head>
+
+<body>
+  <div>
+    <a href="{% url 'adapp:index' %}">Go back to main page</a>
+  </div>
+  <div id="clearTablesFormDiv">
+    <form action="{% url 'adapp:clearTables' %}" method="post" class="formStyle">
+      {% csrf_token %}
+      <div class="titleStyle">Clear tables</div> <hr>
+      <div class="formEleDiv">
+        <input type="submit" value="Clear" class="rightToLeft">
+      </div>
+    </form>
+  </div>
+  <div id="adayazilimDatabase">
+    <div class="leftToRight">
+      <table id="customerTable">
+        <caption class="titleStyle">Customer Table</caption>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>City</th>
+        </tr>
+        {% for curCustomer in customerTable %}
+        <tr>
+          <td>{{ curCustomer.id }}</td>
+          <td>{{ curCustomer.name }}</td>
+          <td>{{ curCustomer.surname }}</td>
+          <td>{{ curCustomer.city }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+    <div class="leftToRight">
+      <table id="basketTable">
+        <caption class="titleStyle">Basket Table</caption>
+        <tr>
+          <th>ID</th>
+          <th>CustomerID</th>
+        </tr>
+        {% for curBasket in basketTable %}
+        <tr>
+          <td>{{ curBasket.id }}</td>
+          <td>{{ curBasket.customer_id }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+    <div class="leftToRight">
+      <table id="basketProductTable">
+        <caption class="titleStyle">BasketProduct Table</caption>
+        <tr>
+          <th>ID</th>
+          <th>BasketID</th>
+          <th>Cost</th>
+          <th>Description</th>
+        </tr>
+        {% for curBasketProduct in basketProductTable %}
+        <tr>
+          <td>{{ curBasketProduct.id }}</td>
+          <td>{{ curBasketProduct.basket_id }}</td>
+          <td>{{ curBasketProduct.cost }} TL</td>
+          <td>{{ curBasketProduct.description }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</body>
+
+</html>
